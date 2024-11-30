@@ -1,16 +1,15 @@
 with
-    /* Chamada dos modelos necessários. */
     funcionarios as (
         select *
         from {{ ref('stg_erp__funcionarios') }}
     )
 
-    , self_joined as (
+    , joined as (
         select
             funcionarios.PK_FUNCIONARIO
             , funcionarios.NOME_FUNCIONARIO
+            , gerentes.nome_funcionario as nome_gerente
             , funcionarios.CARGO_FUNCIONARIO
-            , gerentes.NOME_FUNCIONARIO as nome_gerente
             , funcionarios.DT_NASCIMENTO_FUNCIONARIO
             , funcionarios.DT_CONTRATACAO
             , funcionarios.CIDADE_FUNCIONARIO
@@ -22,4 +21,4 @@ with
     )
 
 select *
-from self_joined
+from joined

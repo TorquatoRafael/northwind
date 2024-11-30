@@ -1,10 +1,10 @@
 with
     fonte_funcionarios as (
         select *
-        from {{ source('erp', 'employees') }}
+        from {{ source('erp_northwind', 'employees') }}
     )
 
-    , renomeado as (
+    , renomeacao as (
         select
             cast(ID as int) as pk_funcionario
             , cast(REPORTSTO as int) as fk_gerente
@@ -27,4 +27,4 @@ with
     )
 
 select *
-from renomeado
+from renomeacao
