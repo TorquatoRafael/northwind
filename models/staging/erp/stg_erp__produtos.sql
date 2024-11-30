@@ -10,8 +10,13 @@ with
             , cast(UNITSINSTOCK as int) as unidade_em_estoque
             , cast(UNITSONORDER as int) as unidade_por_pedido
             , cast(REORDERLEVEL as int) as nivel_de_pedido
-            , discontinued as eh_discontinuado
-        from {{ source('erp', 'products') }}
+            , case
+                when discontinued = '1' then true
+                when discontinued = '0' then false
+                else null
+            end as eh_discontinuado
+        from {{ source('erp_northwind', 'products') }}
     )
+
 select *
 from renomeado

@@ -5,7 +5,8 @@ with
             , cast(COMPANYNAME as varchar) as nome_fornecedor
             , cast(CITY as varchar) as cidade_fornecedor
             , cast(COUNTRY as varchar) as pais_fornecedor
-        from {{ source('erp', 'suppliers') }}
+        from {{ source('erp_northwind', 'suppliers') }}
     )
+
 select *
 from fonte_fornecedores

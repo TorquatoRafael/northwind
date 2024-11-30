@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: erp_northwind
+    description: 'Essa é a fonte do sistema ERP da northwind com dados de vendas e transações.'
+    database: FEA24_11
+    schema: raw_northwind   
+    tables:
+      - name: employees
+        description: 'Tabela com dados de funcionários.'
+        columns:
+          - name: id
+            description: 'Chave primária da tabela funcionários.'
+            tests:
+              - unique
+              - not_null
+      - name: products
+      - name: category
+      - name: orders
+      - name: order_details
+      - name: customers
+      - name: shippers
+      - name: suppliers
